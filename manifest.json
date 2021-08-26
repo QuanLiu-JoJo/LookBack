@@ -1,0 +1,21 @@
+{
+	"manifest_version": 2,
+	"name": "LookBack",
+	"version": "0.0.1",
+	"description": "We can go back to the position in a webpage where we read last time.",
+	"icons": {
+        "16": "images/icon16.png",
+        "48": "images/icon48.png",
+        "128": "images/icon128.png"
+    },
+	"content_scripts": [
+    {
+      "matches": ["*://juejin.cn/post/*", "*://cnblogs.com/post/*", "*://segmentfault.com/a/*", "*://blog.csdn.net/*"],
+	  "css": ["mycss.css"],
+      "js": ["myscript.js"]
+    }
+	],
+	"web_accessible_resources": [
+  	"myscript.js"
+  ]
+}

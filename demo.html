@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LookBack</title>
+  </head>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    .content {
+      height: 2000px;
+      background-color: skyblue;
+    }
+    .next {
+      height: 2000px;
+      background-color: pink;
+    }
+    .tip {
+      display: none;
+      position: fixed;
+      text-align: center;
+      top: 40px;
+      left: 0;
+      right: 0;
+    }
+    .tip span {
+      border: 1px solid rgb(125, 225, 168);
+      background-color: rgba(228, 249, 230, 0.8);
+      padding: 10px 20px;
+      border-radius: 7px;
+      font-weight: lighter;
+    }
+    /*弹层动画（从上往下）*/
+
+    .tip {
+      animation: fadeInDown 0.5s;
+    }
+    @keyframes fadeInDown {
+      0% {
+        transform: translate3d(0, -100%, 0);
+        opacity: 0;
+      }
+      100% {
+        transform: none;
+        opacity: 1;
+      }
+    }
+
+    .hide {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+      animation: hide 0.5s forwards;
+    }
+    @keyframes hide {
+      to {
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-100%);
+      }
+    }
+  </style>
+  <body>
+    <div class="content"></div>
+    <div class="next"></div>
+    <!-- <div class="tip"><span>已定位到上次阅读位置</span></div> -->
+  </body>
+  <script>
+    if (localStorage.getItem("tag_Look_back") !== null) {
+      let ele = document.createElement("div");
+      ele.classList.add("tip");
+      document.body.appendChild(ele);
+      ele.innerHTML = "<span>已定位到上次阅读位置</span>";
+      window.scrollTo(0, parseInt(localStorage.getItem("tag_Look_back")));
+      document.querySelector(".tip").style.display = "block";
+      setTimeout(() => {
+        document.querySelector(".tip").classList.add("hide");
+      }, 1500);
+    }
+
+    window.addEventListener("unload", function () {
+      localStorage.setItem("tag_Look_back", window.pageYOffset);
+    });
+  </script>
+</html>

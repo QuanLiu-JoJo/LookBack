@@ -1,0 +1,45 @@
+.tip {
+  z-index: 99999999;
+  display: none;
+  position: fixed;
+  text-align: center;
+  top: 40px;
+  left: 0;
+  right: 0;
+}
+.tip span {
+  border: 1px solid rgb(125, 225, 168);
+  background-color: rgba(228, 249, 230, 0.8);
+  padding: 10px 20px;
+  border-radius: 7px;
+  font-weight: normal;
+}
+/*弹层动画（从上往下）*/
+
+.tip {
+  animation: fadeInDown 0.5s;
+}
+@keyframes fadeInDown {
+  0% {
+    transform: translate3d(0, -100%, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+.hide {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  animation: hide 0.5s forwards;
+}
+@keyframes hide {
+  to {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
